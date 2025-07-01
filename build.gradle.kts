@@ -4,6 +4,7 @@ plugins {
     id("org.springframework.boot") version "3.5.3"
     id("io.spring.dependency-management") version "1.1.7"
     id("jacoco")
+    id("info.solidsoft.pitest") version "1.15.0"
 }
 
 group = "com.example"
@@ -11,7 +12,7 @@ version = "0.0.1-SNAPSHOT"
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+        languageVersion = JavaLanguageVersion.of(17)
     }
 }
 
@@ -29,6 +30,7 @@ dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation("io.kotest:kotest-property:5.9.1")
     testImplementation("io.mockk:mockk:1.13.8")
+    pitest("org.pitest:pitest-junit5-plugin:1.1.2")
 }
 
 kotlin {
@@ -40,6 +42,16 @@ kotlin {
 jacoco {
     toolVersion = "0.8.13"
     reportsDirectory = layout.buildDirectory.dir("jacocoReport")
+}
+
+pitest {
+    targetClasses.set(setOf("com.example.demo.*"))
+    junit5PluginVersion.set("1.0.0")
+    avoidCallsTo.set(setOf("kotlin.jvm.internal"))
+    mutators.set(setOf("STRONGER"))
+    threads.set(Runtime.getRuntime().availableProcessors())
+    outputFormats.set(setOf("XML", "HTML"))
+    excludedClasses.add("**DemoApplication")
 }
 
 tasks.withType<Test> {
