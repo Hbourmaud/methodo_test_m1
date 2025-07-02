@@ -7,7 +7,6 @@ import org.springframework.boot.runApplication
 class DemoApplication
 
 fun main(args: Array<String>) {
-    print(cypher('A', 2))
     runApplication<DemoApplication>(*args)
 }
 
