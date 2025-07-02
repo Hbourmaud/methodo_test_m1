@@ -1,4 +1,4 @@
-﻿package com.example.demo.domain.infrastructure.driving.adapter
+﻿package com.example.demo.infrastructure.driving.adapter
 
 import com.example.demo.domain.model.Book
 import com.example.demo.domain.port.BookRepository

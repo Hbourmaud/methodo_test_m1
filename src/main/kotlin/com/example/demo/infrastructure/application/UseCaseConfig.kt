@@ -1,7 +1,6 @@
-﻿package com.example.demo.domain.infrastructure.application
+﻿package com.example.demo.infrastructure.application
 
-import com.example.demo.domain.infrastructure.driving.adapter.BookDAO
-import com.example.demo.domain.port.BookRepository
+import com.example.demo.infrastructure.driving.adapter.BookDAO
 import com.example.demo.domain.usecase.BookUseCase
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration

@@ -1,4 +1,4 @@
-﻿package com.example.demo.domain.infrastructure.driving.controller
+﻿package com.example.demo.infrastructure.driving.controller
 
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity

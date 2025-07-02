@@ -1,4 +1,4 @@
-﻿package com.example.demo.domain.infrastructure.driving.controller.dto
+﻿package com.example.demo.infrastructure.driving.controller.dto
 
 import com.example.demo.domain.model.Book
 import jakarta.validation.constraints.NotBlank

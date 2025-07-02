@@ -1,9 +1,9 @@
-﻿package com.example.demo.domain.infrastructure.driving.controller
+﻿package com.example.demo.infrastructure.driving.controller
 
 import com.example.demo.domain.usecase.BookUseCase
-import com.example.demo.domain.infrastructure.driving.controller.dto.BookDto
-import com.example.demo.domain.infrastructure.driving.controller.dto.toDomain
-import com.example.demo.domain.infrastructure.driving.controller.dto.toDto
+import com.example.demo.infrastructure.driving.controller.dto.BookDto
+import com.example.demo.infrastructure.driving.controller.dto.toDomain
+import com.example.demo.infrastructure.driving.controller.dto.toDto
 import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.GetMapping

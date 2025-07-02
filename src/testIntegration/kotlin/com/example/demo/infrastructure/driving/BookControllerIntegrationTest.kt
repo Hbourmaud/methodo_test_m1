@@ -1,7 +1,7 @@
 ﻿package com.example.demo.infrastructure.driving
 
-import com.example.demo.domain.infrastructure.driving.controller.BookAlreadyExistsException
-import com.example.demo.domain.infrastructure.driving.controller.BookController
+import com.example.demo.infrastructure.driving.controller.BookAlreadyExistsException
+import com.example.demo.infrastructure.driving.controller.BookController
 import com.example.demo.domain.model.Book
 import com.example.demo.domain.usecase.BookUseCase
 import com.ninjasquad.springmockk.MockkBean
