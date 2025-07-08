@@ -8,6 +8,10 @@ class BookUseCase(private val repository: BookRepository) {
         repository.save(book)
     }
 
+    fun reserveBook(title: String): Boolean {
+        return repository.reserveBook(title)
+    }
+
     fun getAllBooksSortedByTitle(): List<Book> {
         return repository.findAll().sortedBy { it.title }
     }

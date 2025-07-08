@@ -20,6 +20,17 @@ class FakeBookRepository : BookRepository {
     }
 
     override fun findAll(): List<Book> = books.toList()
+
+
+    override fun reserveBook(title: String): Boolean {
+        val index = books.indexOfFirst { it.title == title }
+        if (index == -1) return false
+        val book = books[index]
+        if (book.reserved) return false
+
+        books[index] = book.copy(reserved = true)
+        return true
+    }
 }
 
 class BookUseCaseTest : FunSpec({
@@ -63,6 +74,22 @@ class BookUseCaseTest : FunSpec({
 
             result shouldContainExactlyInAnyOrder books
         }
+    }
+
+    test("should reserve a book if not reserved") {
+        every { repository.reserveBook("Hamlet") } returns true
+
+        useCase.reserveBook("Hamlet") shouldBe true
+
+        verify { repository.reserveBook("Hamlet") }
+    }
+
+    test("should not reserve a book if already reserved") {
+        every { repository.reserveBook("Hamlet") } returns false
+
+        useCase.reserveBook("Hamlet") shouldBe false
+
+        verify { repository.reserveBook("Hamlet") }
     }
 
 })

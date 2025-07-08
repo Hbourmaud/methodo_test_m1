@@ -5,4 +5,5 @@ import com.example.demo.domain.model.Book
 interface BookRepository {
     fun save(book: Book)
     fun findAll(): List<Book>
+    fun reserveBook(title: String): Boolean
 }

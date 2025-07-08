@@ -18,7 +18,8 @@ class BookDAO(
         ) { rs, _ ->
             Book(
                 title = rs.getString("title"),
-                author = rs.getString("author")
+                author = rs.getString("author"),
+                reserved = rs.getBoolean("reserved")
             )
         }
     }
@@ -31,5 +32,17 @@ class BookDAO(
                 "author" to book.author
             )
         )
+    }
+
+    override fun reserveBook(title: String): Boolean {
+        val updatedRows = namedParameterJdbcTemplate.update(
+            """
+        UPDATE BOOK
+        SET reserved = true
+        WHERE title = :title AND reserved = false
+        """.trimIndent(),
+            mapOf("title" to title)
+        )
+        return updatedRows > 0
     }
 }

@@ -93,4 +93,28 @@ class BookControllerIntegrationTest (
         verify(exactly = 1) { bookUseCase.addBook(Book("Existing Title", "Existing Author")) }
     }
 
+    test("should return 200 OK when book is successfully reserved") {
+        every { bookUseCase.reserveBook("Hamlet") } returns true
+
+        mockMvc.post("/api/books/Hamlet/reserve")
+            .andExpect {
+                status { isOk() }
+                content { string("Book reserved") }
+            }
+
+        verify { bookUseCase.reserveBook("Hamlet") }
+    }
+
+    test("should return 409 CONFLICT if book is already reserved") {
+        every { bookUseCase.reserveBook("Hamlet") } returns false
+
+        mockMvc.post("/api/books/Hamlet/reserve")
+            .andExpect {
+                status { isConflict() }
+                content { string("Book is already reserved") }
+            }
+
+        verify { bookUseCase.reserveBook("Hamlet") }
+    }
+
 })

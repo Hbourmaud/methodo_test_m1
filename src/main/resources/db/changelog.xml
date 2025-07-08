@@ -7,4 +7,7 @@
 
     <include file="db/changelogs/20231009000500_initial_schema.xml" />
 
+    <include file="/db/changelogs/20230701_create_book_table.xml"/>
+    <include file="/db/changelogs/20230703_add_reserved_column.xml"/>
+
 </databaseChangeLog>

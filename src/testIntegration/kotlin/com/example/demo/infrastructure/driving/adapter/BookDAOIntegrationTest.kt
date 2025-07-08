@@ -81,6 +81,39 @@ class BookDAOIntegrationTest (
         }
     }
 
+    test("should reserve available book") {
+        hikariDataSource.connection.use { conn ->
+            conn.createStatement().use { stmt ->
+                stmt.executeUpdate("""
+            INSERT INTO book (title, author, reserved)
+            VALUES ('1984', 'Orwell', false)
+        """.trimIndent())
+            }
+        }
+
+        val result = bookDAO.reserveBook("1984")
+
+        result shouldBe true
+        val books = bookDAO.findAll()
+        books.first().reserved shouldBe true
+    }
+
+    test("should not reserve already reserved book") {hikariDataSource.connection.use { conn ->
+        conn.createStatement().use { stmt ->
+            stmt.executeUpdate("""
+            INSERT INTO book (title, author, reserved)
+            VALUES ('1984', 'Orwell', true)
+        """.trimIndent())
+        }
+    }
+
+        val result = bookDAO.reserveBook("1984")
+
+        result shouldBe false
+        val books = bookDAO.findAll()
+        books.first().reserved shouldBe true
+    }
+
     afterSpec {
         container.stop()
     }
